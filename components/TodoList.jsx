@@ -71,7 +71,11 @@ const TodoList = ({ todos, setTodos, editTodo, setEditTodo }) => {
                   color="red"
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  handleEdit(item);
+                }}
+              >
                 <MaterialCommunityIcons
                   style={{ paddingRight: 5 }}
                   name="pencil"

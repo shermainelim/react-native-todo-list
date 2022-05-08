@@ -2,11 +2,25 @@ import React, { useState, useEffect } from "react";
 import { TextInput, View, Text, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const Form = ({ input, setInput, todos, setTodos }) => {
+const Form = ({ input, setInput, todos, setTodos, editTodo, setEditTodo }) => {
   const onInputChange = (input) => {
     setInput(input);
   };
+  const updateTodo = (title, id, completed) => {
+    const newTodo = todos.map((todo) =>
+      todo.id === id ? { title, id, completed } : todo
+    );
+    setTodos(newTodo);
+    setEditTodo("");
+  };
 
+  useEffect(() => {
+    if (editTodo) {
+      setInput(editTodo.title);
+    } else {
+      setInput("");
+    }
+  }, [setInput, editTodo]);
   return (
     <View
       style={{
@@ -44,12 +58,15 @@ const Form = ({ input, setInput, todos, setTodos }) => {
         <TouchableOpacity
           disabled={input.length === 0 ? true : false}
           onPress={() => {
-            setTodos((todos) => [
-              { id: Date.now(), title: input, completed: false },
-              ...todos,
-            ]);
-            console.log(todos);
-            setInput("");
+            if (!editTodo) {
+              setTodos([
+                ...todos,
+                { id: Date.now(), title: input, completed: false },
+              ]);
+              setInput("");
+            } else {
+              updateTodo(input, editTodo.id, editTodo.completed);
+            }
           }}
         >
           <MaterialCommunityIcons
