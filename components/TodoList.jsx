@@ -8,7 +8,26 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, setTodos, editTodo, setEditTodo }) => {
+  const handleDelete = ({ id }) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+  const handleComplete = (todo) => {
+    setTodos(
+      todos.map((item) => {
+        if (item.id === todo.id) {
+          return { ...item, completed: !item.completed };
+        }
+        console.log(item);
+        return item;
+      })
+    );
+  };
+
+  const handleEdit = ({ id }) => {
+    const findTodo = todos.find((todo) => todo.id === id);
+    setEditTodo(findTodo);
+  };
   return (
     <View>
       <FlatList
@@ -26,7 +45,14 @@ const TodoList = ({ todos }) => {
               borderRadius: 10,
             }}
           >
-            <Text>{item.title}</Text>
+            <Text
+              style={{
+                color: item.completed ? "grey" : "black",
+                textDecorationLine: item.completed ? "line-through" : "none",
+              }}
+            >
+              {item.title}
+            </Text>
             <View
               style={{
                 flexDirection: "row",
@@ -49,7 +75,11 @@ const TodoList = ({ todos }) => {
                   color="teal"
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  handleComplete(item);
+                }}
+              >
                 <MaterialCommunityIcons
                   style={{ paddingRight: 5 }}
                   name="check-circle-outline"
