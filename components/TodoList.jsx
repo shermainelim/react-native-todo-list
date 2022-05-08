@@ -59,7 +59,11 @@ const TodoList = ({ todos, setTodos, editTodo, setEditTodo }) => {
                 paddingleft: 20,
               }}
             >
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  handleDelete(item);
+                }}
+              >
                 <MaterialCommunityIcons
                   style={{ paddingRight: 5 }}
                   name="trash-can-outline"
