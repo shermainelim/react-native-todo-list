@@ -13,7 +13,53 @@ const TodoList = ({ todos }) => {
     <View>
       <FlatList
         data={todos}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
+        renderItem={({ item }) => (
+          <View
+            style={{
+              padding: 10,
+              width: 320,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginVertical: 5,
+              borderWidth: 3,
+              borderRadius: 10,
+            }}
+          >
+            <Text>{item.title}</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                paddingleft: 20,
+              }}
+            >
+              <TouchableOpacity>
+                <MaterialCommunityIcons
+                  style={{ paddingRight: 5 }}
+                  name="trash-can-outline"
+                  size={24}
+                  color="red"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <MaterialCommunityIcons
+                  style={{ paddingRight: 5 }}
+                  name="pencil"
+                  size={24}
+                  color="teal"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <MaterialCommunityIcons
+                  style={{ paddingRight: 5 }}
+                  name="check-circle-outline"
+                  size={24}
+                  color="black"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
         keyExtractor={(item) => item.id.toString()}
       />
     </View>
