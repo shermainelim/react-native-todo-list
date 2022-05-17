@@ -52,7 +52,7 @@ export default function App() {
         editTodo={editTodo}
         setEditTodo={setEditTodos}
       />
-      <View>
+      <View style={{ flex: 1 }}>
         <TodoList
           todos={todos}
           setTodos={setTodos}

@@ -37,6 +37,7 @@ const Form = ({ input, setInput, todos, setTodos, editTodo, setEditTodo }) => {
             placeholder="Enter a Todo..."
             value={input}
             onChangeText={onInputChange}
+            maxLength={26}
           ></TextInput>
         </View>
       </View>
