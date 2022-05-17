@@ -19,7 +19,7 @@
     "assetBundlePatterns": ["**/*"],
     "android": {
       "package": "com.todolist.checkv2",
-      "versionCode": 20200908,
+      "versionCode": 20200909,
       "permissions": []
     }
   }
