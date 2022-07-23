@@ -2,7 +2,7 @@
 
 Live Demo Deployed to Play Store : https://play.google.com/store/apps/details?id=com.todolist.checkv2
 
-Refactored code from React Todo List to React Native Todo List
+Refactored code from React Todo List (https://github.com/shermainelim/react-todo-app-crud) to React Native Todo List
 
 CRUD operations
 
